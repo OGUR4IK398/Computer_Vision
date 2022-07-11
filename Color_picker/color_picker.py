@@ -17,7 +17,7 @@ def empty():
 # Функция работает при нажатии на кнопку сохранения
 def save_thresholds():
     file = open('thresholds.txt', 'w')
-    file.write(f"[{h_min}, {s_min}, {v_min}, {h_max}, {s_max}, {v_max}]")
+    file.write(f"{h_min} {s_min} {v_min} {h_max} {s_max} {v_max}")
     file.close()
 
 
@@ -57,7 +57,7 @@ while True:
 
     # Рисование черно-белой картинки на основе маски
     result = cv2.bitwise_and(img, img, mask=mask)
-    print(f"[{h_min}, {s_min}, {v_min}, {h_max}, {s_max}, {v_max}]")
+    print(f"{h_min} {s_min} {v_min} {h_max} {s_max} {v_max}")
 
     # Покраска маски в серый
     mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
@@ -70,7 +70,7 @@ while True:
     save_thresholds()
 
     # Выход из цикла
-    if cv2.waitKey(1) and 0xFF == ord('q'):
+    if cv2.waitKey(1) == ord('q'):
         break
 
 cam.release()
