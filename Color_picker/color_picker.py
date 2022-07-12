@@ -9,6 +9,7 @@ frame_height = 300
 # Инициализация камеры
 cam = cv2.VideoCapture(0)
 
+
 # Костыль, но неважно :)
 def empty():
     pass
@@ -66,12 +67,12 @@ while True:
     h_stack = np.hstack([img, mask, result])
     cv2.imshow("Horizontal stack", h_stack)
 
-    # Сохранение значения в файл
-    save_thresholds()
-
     # Выход из цикла
     if cv2.waitKey(1) == ord('q'):
         break
+    if cv2.waitKey(1) == ord('s'):
+        # Сохранение значения в файл
+        save_thresholds()
 
 cam.release()
 cv2.destroyAllWindows()
