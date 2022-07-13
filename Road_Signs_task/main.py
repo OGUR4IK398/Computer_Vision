@@ -104,9 +104,13 @@ def standardize(image_list):
 
     return standard_list
 
+# Debug
+c = 0
+
 
 # Получение списка неклассифицированных изображений
 def get_misclassified_images(test_images):
+    global c
     """Определение точности
     Сравните результаты вашего алгоритма классификации
     с истинными метками и определите точность.
@@ -127,6 +131,11 @@ def get_misclassified_images(test_images):
 
         # Получение метки из написанного Вами классификатора
         predicted_label = eval.predict_label(im)
+
+        # DEBUG
+        if sum(predicted_label) == 0:
+            c += 1
+        # DEBUG
         assert (len(predicted_label) == 8), "Метка имеет не верную длинну (8 значений)"
 
         # Сравнение реальной и предсказанной метки
@@ -180,6 +189,7 @@ def main():
 
     print('Точность: ' + str(accuracy))
     print("Число не распознанных изображений = " + str(len(MISCLASSIFIED)) + ' из ' + str(total))
+    print(c)
 
 
 if __name__ == '__main__':
